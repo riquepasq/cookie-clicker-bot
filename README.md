@@ -1,7 +1,7 @@
 # Cookie Clicker Bot
-#####Bot that auto plays the game for you, choosing the most valuable buys and clicking everything you need!
-##### Game: https://orteil.dashnet.org/cookieclicker/
-##### Some features:
+####Bot that auto plays the game for you, choosing the most valuable buys and clicking everything you need!
+#### Game: https://orteil.dashnet.org/cookieclicker/
+#### Some features:
 - Calculates what's best to buy at the shop and auto buys them when possible
 - Auto buys upgrades from the store when possible
 - Auto clicks the big cookie
@@ -25,4 +25,4 @@ Enter repo directory and run:
 ```
 python main.py
 ```
-#####In case you lose your 'save.txt' file, you can get it back inside 'clicker.log' log file 
+####In case you lose your 'save.txt' file, you can get it back inside 'clicker.log' log file 
