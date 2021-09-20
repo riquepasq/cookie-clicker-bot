@@ -7,7 +7,7 @@ from core.browser import Browser
 from core.product_handler import ProductHandler
 from core.progress import Progress
 from core.upgrade_handler import UpgradeHandler
-from settings import NUMBER_OF_COOKIE_THREADS, SAVE_INTERVAL
+from settings import NUMBER_OF_COOKIE_THREADS, SAVE_INTERVAL, GAME_OPTIONS
 from util import util
 from util.logger import Logger
 
@@ -26,9 +26,17 @@ class Main(object):
             {'action': self.progress.export_save, 'interval': SAVE_INTERVAL},
             {'action': self.upgrade_handler.buy_upgrade, 'interval': 60},
             {'action': self.product_handler.update_cookies_info, 'interval': 5},
-            {'action': self.product_handler.load_products, 'interval': 60},
+            {'action': self.product_handler.load_products, 'interval': 30},
             {'action': self.product_handler.buy_product, 'interval': 5},
         ]
+
+    def define_settings(self):
+        for option in GAME_OPTIONS.items():
+            if option[0] == 'Volume percentage':
+                self.browser.js("document.getElementById('volumeSlider').value = {}".format(option[1]))
+            else:
+                pass
+                # Game.Toggle('fancy','fancyButton','Fancy graphics ON','Fancy graphics OFF','0');Game.ToggleFancy();PlaySound('snd/tick.mp3');
 
     def click_big_cookie(self):
         self.browser.click_element_fast('bigCookie', By.ID)
@@ -51,6 +59,7 @@ class Main(object):
     def start(self):
         self.browser.load_website()
         self.progress.import_save()
+        self.define_settings()
         self.browser.dismiss_popups()
         try:
             for action in self.actions:

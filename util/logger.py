@@ -4,7 +4,7 @@ from datetime import datetime
 
 from util.singleton import Singleton
 
-logging.basicConfig(filename="../clicker.log",
+logging.basicConfig(filename="clicker.log",
                     format='%(asctime)s %(message)s',
                     filemode='a')
 logging.disable(logging.ERROR)
@@ -39,6 +39,6 @@ class Logger(metaclass=Singleton):
     def _log(method, message: str):
         output = '{} {}'.format(datetime.now(), message)
         if 'debug' not in method.__name__:
-            with open('../clicker.log', 'a') as f:
+            with open('clicker.log', 'a') as f:
                 f.write(output + '\n')
                 print(output)

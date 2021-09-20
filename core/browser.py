@@ -90,7 +90,7 @@ class Browser(metaclass=Singleton):
 
     def load_website(self):
         self.open_url('https://orteil.dashnet.org/cookieclicker/')
-        self.click_element('statsButton', By.ID)  # wait for the page to load
+        self.click_element('prefsButton', By.ID)  # wait for the page to load
 
     def dismiss_popups(self):
         try:

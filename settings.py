@@ -15,3 +15,25 @@ SAVE_INTERVAL = 30
 
 # Save file
 SAVE_FILE = 'save.txt'
+
+GAME_OPTIONS = {
+    'Volume percentage': 0,
+    'Fancy graphics': False,
+    'CSS filters': False,
+    'Particles': False,
+    'Numbers': True,
+    'Milk': False,
+    'Cursors': False,
+    'Wobbly cookie': False,
+    'Alt cookie sound': False,
+    'Icon crates': False,
+    'Alt font': False,
+    'Short numbers': False,  # must be 'False' to make the cookie count work
+    'Fast notes': True,
+    'Closing warning': False,
+    'Defocus': True,
+    'Extra buttons': False,
+    'Lump confirmation': False,
+    'Custom grandmas': False,
+    'Sleep mode timeout': True
+}

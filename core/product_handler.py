@@ -76,11 +76,13 @@ class ProductHandler(object):
             product_metadata = {}
             elem_number = re.findall('\d+', product_id)[0]
             price = self.browser.get_element('productPrice{}'.format(elem_number), By.ID)
-            if price.text:
+            if price and price.text:
                 product_metadata['price'] = float(price.text.replace(',', ''))
-            self.browser.scroll_to_element(product_id, By.ID)
-            self.browser.hover_element(product_id, By.ID)
-            sleep(0.1)
+            # self.browser.scroll_to_element(product_id, By.ID)
+            # self.browser.hover_element(product_id, By.ID)
+            # sleep(0.1)
+            self.browser.js(
+                "Game.tooltip.dynamic=1;Game.tooltip.draw(this,function(){return Game.ObjectsById[" + str(elem_number) + "].tooltip();},'store');Game.tooltip.wobble();")
             tooltip = self.browser.get_element('tooltip', By.ID)
             if tooltip:
                 percentage = re.findall('\d*\.*\d+(?=%)', tooltip.text)
@@ -95,8 +97,8 @@ class ProductHandler(object):
     def update_cookies_info(self):
         try:
             cookies_element = self.browser.get_element("cookies", By.ID, time=0)
-            cookies_text = re.findall('.*(?=\n|cookie)', cookies_element.text)[0].replace('\n', '').replace(',', '').strip()
-            self.amount_cookies = int(cookies_text)
+            cookies_text = re.findall(r'.*(?=\n|cookie)', cookies_element.text)[0].replace('\n', '').replace(',', '').strip()
+            self.amount_cookies = float(re.findall(r'.*\d+', cookies_text)[0].strip())
             self.logger.info('Cookies in bank: ' + str(self.amount_cookies))
         except Exception as exc:
             self.logger.error('main.update_cookies_info -  {}: {}'.format(type(exc), str(exc)))
